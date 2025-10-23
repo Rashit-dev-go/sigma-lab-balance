@@ -1,0 +1,51 @@
+<story-context id="bmad/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>2</storyId>
+    <title>Encrypted Data Storage Pipeline</title>
+    <status>Approved</status>
+    <generatedAt>2025-10-23</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/stories/story-1.2.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>user</asA>
+    <iWant>my financial data to be securely stored and encrypted</iWant>
+    <soThat>trust the platform with my sensitive financial information</soThat>
+    <tasks>- [ ] Реализовать шифрование данных в состоянии покоя с использованием AES-256
+  - [ ] Настроить Prisma с шифрованием для чувствительных полей
+  - [ ] Добавить middleware для автоматического шифрования/дешифрования
+- [ ] Обеспечить безопасные API endpoints
+  - [ ] Внедрить HTTPS/TLS 1.3 для всех соединений
+  - [ ] Добавить валидацию входных данных и санитизацию
+  - [ ] Реализовать rate limiting для предотвращения злоупотреблений
+- [ ] Реализовать изоляцию данных пользователей
+  - [ ] Добавить user_id к всем таблицам с данными
+  - [ ] Настроить Row Level Security (RLS) в PostgreSQL
+  - [ ] Провести тестирование на отсутствие перекрестного доступа
+- [ ] Добавить базовое логирование аудита
+  - [ ] Логировать все операции чтения/записи финансовых данных
+  - [ ] Внедрить структурированное логирование с Winston
+  - [ ] Настроить сбор логов в Yandex Cloud Logging</tasks>
+  </story>
+
+  <acceptanceCriteria>1. Все финансовые данные зашифрованы в состоянии покоя с использованием отраслевых стандартов
+2. Безопасные API endpoints для передачи данных
+3. Данные пользователей изолированы по учетным записям без перекрестного загрязнения
+4. Реализованно базовое логирование аудита для доступа к данным</acceptanceCriteria>
+
+  <artifacts>
+    <docs><doc path="docs/epics.md" title="AETHA Fin - Epic Breakdown" section="Story 1.2: Encrypted Data Storage Pipeline" snippet="Detailed story requirements including acceptance criteria for encrypted data storage, secure API endpoints, user data isolation, and audit logging." /><doc path="docs/PRD.md" title="AETHA Fin Product Requirements Document" section="Non-Functional Requirements" snippet="Requirements for data protection (NFR001, NFR002), secure access (NFR003), and essential security measures." /><doc path="docs/architecture.md" title="Архитектура решений AETHA Fin" section="Security Architecture" snippet="Security measures including TLS 1.3 for all connections, AES-256 encryption for data at rest, MFA, rate limiting, and audit logging with Winston." /></docs>
+    <code></code>
+    <dependencies><dependency ecosystem="javascript" packages="next, typescript, tailwindcss, next-auth, yandex-gpt, @prisma/client, prisma, winston, crypto" /><dependency ecosystem="database" packages="postgresql (Yandex Managed)" /></dependencies>
+  </artifacts>
+
+  <constraints>Использовать PostgreSQL с AES-256 шифрованием для данных в состоянии покоя. Реализовать REST API endpoints с TLS 1.3. Настроить Row Level Security (RLS) для изоляции данных пользователей. Внедрить структурированное логирование с Winston и интеграцию с Yandex Cloud Logging. Следовать feature-based структуре с общими утилитами в /lib.</constraints>
+  <interfaces><interface name="Data Storage API" kind="REST endpoint" signature="POST /api/data/store {userId: string, data: encrypted}" path="pages/api/data/store.js" /><interface name="Data Retrieval API" kind="REST endpoint" signature="GET /api/data/retrieve?userId={userId}" path="pages/api/data/retrieve.js" /></interfaces>
+  <tests>
+    <standards>Unit tests for encryption utilities using Jest. Integration tests for API endpoints with security validation. E2E tests for data storage and retrieval flows using Playwright. Follow testing patterns from architecture.md.</standards>
+    <locations>__tests__ folders for lib/crypto, pages/api/__tests__ for API tests, e2e/ for end-to-end tests</locations>
+    <ideas>1. Test AES-256 encryption and decryption of financial data. 2. Test rate limiting prevents excessive API calls. 3. Test RLS prevents cross-user data access. 4. Test audit logging captures all data operations. 5. Test TLS 1.3 enforcement for all connections.</ideas>
+  </tests>
+</story-context>

@@ -1,0 +1,111 @@
+<story-context id="bmad/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>5</storyId>
+    <title>Basic Financial Dashboard</title>
+    <status>Ready</status>
+    <generatedAt>2025-10-24</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/stories/story-1.5.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>user</asA>
+    <iWant>to see a simple dashboard of my financial status</iWant>
+    <soThat>I can get an overview of my financial health at a glance</soThat>
+    <tasks>- [ ] Implement dashboard data API (AC: 1,2,3)
+  - [ ] Create API endpoint to calculate total balance and summary statistics
+  - [ ] Fetch recent transactions from database
+  - [ ] Return data in structured JSON format
+- [ ] Create dashboard UI components (AC: 1,2,4)
+  - [ ] Build balance display component
+  - [ ] Implement recent transactions list
+  - [ ] Create basic charts for income vs expenses using charting library
+  - [ ] Ensure clean, intuitive interface with responsive design
+- [ ] Add dashboard page routing (AC: 4)
+  - [ ] Create dashboard page in Next.js App Router
+  - [ ] Add navigation to dashboard
+- [ ] Implement data fetching and state management (AC: 1,2,3)
+  - [ ] Use React hooks for data fetching
+  - [ ] Handle loading and error states
+- [ ] Add comprehensive testing (AC: 1,2,3,4)
+  - [ ] Unit tests for dashboard components and API logic
+  - [ ] Integration tests for data fetching and API endpoints
+  - [ ] E2E tests for dashboard loading and data display
+  - [ ] Visual regression tests for charts and UI elements</tasks>
+  </story>
+
+  <acceptanceCriteria>1. Display of total balance, recent transactions
+2. Basic charts for income vs expenses
+3. Summary statistics (total income, total expenses, net)
+4. Clean, intuitive interface</acceptanceCriteria>
+
+  <artifacts>
+    <docs><doc>
+  <path>docs/PRD.md</path>
+  <title>AETHA Fin Product Requirements Document (PRD)</title>
+  <section>Functional Requirements</section>
+  <snippet>FR002: [Видимость] Пользователь может видеть все свои доходы и расходы в одном месте (ясность данных). FR006: [Обзор] Пользователь получает простой обзор своего финансового положения (сводка).</snippet>
+</doc>
+<doc>
+  <path>docs/architecture.md</path>
+  <title>Архитектура решений AETHA Fin</title>
+  <section>Решения</section>
+  <snippet>Фронтенд: Next.js 14.x, База данных: Yandex Managed PostgreSQL, API: REST, Развёртывание: Yandex Cloud Functions.</snippet>
+</doc>
+<doc>
+  <path>docs/epics.md</path>
+  <title>AETHA Fin - Epic Breakdown</title>
+  <section>Story 1.5: Basic Financial Dashboard</section>
+  <snippet>Acceptance Criteria: Display of total balance, recent transactions, basic charts for income vs expenses, summary statistics, clean intuitive interface.</snippet>
+</doc></docs>
+    <code><code-artifact>
+  <path>Balance/app/api/transactions/route.ts</path>
+  <kind>API endpoint</kind>
+  <symbol>GET /api/transactions</symbol>
+  <lines>1-50</lines>
+  <reason>Existing transaction retrieval API for fetching recent transactions data</reason>
+</code-artifact>
+<code-artifact>
+  <path>Balance/prisma/schema.prisma</path>
+  <kind>database schema</kind>
+  <symbol>Transaction model</symbol>
+  <lines>10-30</lines>
+  <reason>Database model for transactions including amount, date, description, type fields</reason>
+</code-artifact>
+<code-artifact>
+  <path>Balance/components/TransactionForm.tsx</path>
+  <kind>UI component</kind>
+  <symbol>TransactionForm</symbol>
+  <lines>1-100</lines>
+  <reason>Existing transaction entry component for UI patterns and styling reference</reason>
+</code-artifact></code>
+    <dependencies><dependency>
+  <ecosystem>nodejs</ecosystem>
+  <packages>next: 14.x, react: latest, typescript: latest, tailwindcss: latest, prisma: latest</packages>
+</dependency>
+<dependency>
+  <ecosystem>golang</ecosystem>
+  <packages>go: 1.21</packages>
+</dependency></dependencies>
+  </artifacts>
+
+  <constraints>Follow Next.js 14 App Router, TypeScript for type safety, PostgreSQL for data queries, REST API pattern for data endpoints. Ensure responsive design with Tailwind CSS. Data security with encryption and access controls. Reuse existing database schema and API patterns from previous stories.</constraints>
+  <interfaces><interface>
+  <name>Dashboard API</name>
+  <kind>REST endpoint</kind>
+  <signature>GET /api/dashboard → {balance: number, income: number, expenses: number, net: number, recentTransactions: Transaction[]}</signature>
+  <path>Balance/app/api/dashboard/route.ts</path>
+</interface>
+<interface>
+  <name>Transaction API</name>
+  <kind>REST endpoint</kind>
+  <signature>GET /api/transactions?limit=10 → Transaction[]</signature>
+  <path>Balance/app/api/transactions/route.ts</path>
+</interface></interfaces>
+  <tests>
+    <standards>Unit tests with Jest for components and utilities, integration tests for API routes, E2E tests with Playwright for user flows, visual tests for chart accuracy. Follow established testing patterns from story-1.4 implementation.</standards>
+    <locations>__tests__/app/api/, __tests__/components/, __tests__/e2e/</locations>
+    <ideas>Test dashboard data API returns correct balance calculations (AC1), verify chart rendering with mock data (AC2), check summary statistics accuracy (AC3), validate responsive UI on different screen sizes (AC4)</ideas>
+  </tests>
+</story-context>

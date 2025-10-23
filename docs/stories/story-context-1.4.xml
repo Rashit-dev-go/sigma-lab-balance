@@ -1,0 +1,90 @@
+<story-context id="bmad/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>4</storyId>
+    <title>ai-powered-transaction-categorization</title>
+    <status>Draft</status>
+    <generatedAt>2025-10-24</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/stories/story-1.4.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>user</asA>
+    <iWant>transactions to be automatically categorized using AI</iWant>
+    <soThat>I don't have to manually tag every transaction and can quickly understand my spending patterns</soThat>
+    <tasks>- [ ] Implement YandexGPT integration for transaction categorization
+  - [ ] Set up YandexGPT API client in lib/
+  - [ ] Create categorization prompt templates
+- [ ] Develop categorization logic
+  - [ ] Parse transaction description and amount
+  - [ ] Map to predefined categories (personal/business, income/expense)
+  - [ ] Handle edge cases and ambiguous transactions
+- [ ] Add user override interface
+  - [ ] UI component for category selection
+  - [ ] Update transaction with user override
+  - [ ] Store override for learning
+- [ ] Implement accuracy tracking
+  - [ ] Track AI vs user categorizations
+  - [ ] Calculate accuracy metrics
+  - [ ] Store metrics in database</tasks>
+  </story>
+
+  <acceptanceCriteria>1. AI model categorizes transactions on entry
+2. Categories include personal/business, income/expense types
+3. User can override AI suggestions
+4. Accuracy tracking for AI improvement</acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <artifact>
+        <path>docs/PRD.md</path>
+        <title>AETHA Fin Product Requirements Document</title>
+        <section>Functional Requirements</section>
+        <snippet>FR015: [Организация] Пользователь может организовать свои транзакции по категориям (структурирование)</snippet>
+      </artifact>
+      <artifact>
+        <path>docs/architecture.md</path>
+        <title>Архитектура решений AETHA Fin</title>
+        <section>Технологии</section>
+        <snippet>AI-сервис: YandexGPT для AI-функций. Локальная обработка, соответствие законам</snippet>
+      </artifact>
+      <artifact>
+        <path>docs/epics.md</path>
+        <title>AETHA Fin - Epic Breakdown</title>
+        <section>Story 1.4: AI-Powered Transaction Categorization</section>
+        <snippet>Acceptance Criteria: AI model categorizes transactions on entry, categories include personal/business types, user override, accuracy tracking</snippet>
+      </artifact>
+    </docs>
+    <code></code>
+    <dependencies>
+      <node>
+        <package>next</package>
+        <version>14.x</version>
+      </node>
+      <node>
+        <package>yandex-gpt</package>
+        <version>latest</version>
+      </node>
+    </dependencies>
+  </artifacts>
+
+  <constraints>Ensure compliance with Russian data laws (152-ФЗ), use local AI service YandexGPT, implement AES-256 encryption for data security, follow REST API patterns</constraints>
+  <interfaces>
+    <interface>
+      <name>YandexGPT Categorization API</name>
+      <kind>REST endpoint</kind>
+      <signature>POST /api/categorize</signature>
+      <path>pages/api/categorize.js</path>
+    </interface>
+  </interfaces>
+  <tests>
+    <standards>Use Jest for unit and integration tests, focus on AI accuracy validation and API reliability</standards>
+    <locations>__tests__/api/, __tests__/lib/</locations>
+    <ideas>
+      <idea>Test AI categorization accuracy against known transaction samples</idea>
+      <idea>Verify user override functionality updates database</idea>
+      <idea>Check accuracy metrics calculation and storage</idea>
+    </ideas>
+  </tests>
+</story-context>

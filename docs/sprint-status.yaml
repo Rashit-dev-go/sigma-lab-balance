@@ -1,0 +1,81 @@
+# Sprint Status Template
+# This is an EXAMPLE showing the expected format
+# The actual file will be generated with all epics/stories from your epic files
+
+# generated: 2025-10-23
+# project: Balance
+# project_key: Balance
+# tracking_system: file-system
+# story_location: {project-root}/docs/stories
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic exists in epic file but not contexted
+#   - contexted: Epic tech context created (required before drafting stories)
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - drafted: Story file created in stories folder
+#   - ready-for-dev: Draft approved and story context created
+#   - in-progress: Developer actively working on implementation
+#   - review: Under SM review (via review-story workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - completed: Retrospective has been done
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epics should be 'contexted' before stories can be 'drafted'
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically drafts next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', SM reviews, then Dev moves to 'done'
+
+generated: 2025-10-23
+project: Balance
+project_key: Balance
+tracking_system: file-system
+story_location: "{project-root}/docs/stories"
+
+development_status:
+  epic-1: backlog
+  1-1-secure-user-account-creation: done
+  1-2-encrypted-data-storage-pipeline: done
+  1-3-manual-transaction-entry: done
+  1-4-ai-powered-transaction-categorization: done
+  1-5-basic-financial-dashboard: done
+  1-6-user-onboarding-flow: backlog
+  1-7-basic-compliance-framework: backlog
+  epic-1-retrospective: optional
+  epic-2: backlog
+  2-1-basic-ai-financial-insights-free-tier: backlog
+  2-2-premium-ai-recommendations-engine: backlog
+  2-3-subscription-management-system: backlog
+  2-4-free-trial-conversion-optimization: backlog
+  2-5-revenue-analytics-dashboard: backlog
+  2-6-ai-confidence-building-features: backlog
+  2-7-premium-feature-gating: backlog
+  epic-2-retrospective: optional
+  epic-3: backlog
+  3-1-advanced-scenario-simulations: backlog
+  3-2-predictive-analytics-dashboard: backlog
+  3-3-expert-consultation-integration: backlog
+  3-4-financial-planning-collaboration-tools: backlog
+  3-5-multi-scenario-comparison-engine: backlog
+  3-6-risk-assessment-and-mitigation-tools: backlog
+  3-7-goal-tracking-with-predictive-insights: backlog
+  3-8-financial-community-features: backlog
+  epic-3-retrospective: optional
+  epic-4: backlog
+  4-1-regulatory-compliance-suite: backlog
+  4-2-enterprise-security-enhancements: backlog
+  4-3-performance-optimization-and-auto-scaling: backlog
+  4-4-crisis-response-and-business-continuity: backlog
+  4-5-advanced-audit-and-compliance-reporting: backlog
+  4-6-multi-tenant-architecture: backlog
+  4-7-enterprise-integration-apis: backlog
+  4-8-disaster-recovery-and-high-availability: backlog
+  4-9-enterprise-compliance-monitoring-dashboard: backlog
+  epic-4-retrospective: optional

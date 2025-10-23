@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                String   @id @default(cuid())
+  email             String   @unique
+  password          String
+  emailVerified     DateTime?
+  verificationToken String?  @unique
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Add user relationship to transactions
+  transactions      Transaction[]
+}
+
+model Transaction {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Encrypted sensitive fields
+  encryptedAmount     String   // Encrypted amount
+  encryptedDescription String  // Encrypted description
+  type        String   // 'income' or 'expense'
+  category    String?  // 'personal' or 'business'
+  date        DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  categorizationAttempts CategorizationAttempt[]
+}
+
+model CategorizationAttempt {
+  id            String   @id @default(cuid())
+  transactionId String
+  transaction   Transaction @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+
+  aiCategory    String
+  userCategory  String?
+  isCorrect     Boolean?
+  createdAt     DateTime @default(now())
+}

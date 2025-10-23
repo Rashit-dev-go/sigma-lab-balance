@@ -1,0 +1,87 @@
+<story-context id="bmad/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>3</storyId>
+    <title>manual-transaction-entry</title>
+    <status>Ready</status>
+    <generatedAt>2025-10-24</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/stories/story-1.3.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>user</asA>
+    <iWant>manually enter my financial transactions</iWant>
+    <soThat>I can start building my financial database and get organized</soThat>
+    <tasks>- [ ] Create transaction entry form (AC: 1,2)
+  - [ ] Add fields for amount, date, description, type
+  - [ ] Support income/expense types
+- [ ] Implement form validation (AC: 3)
+  - [ ] Required fields validation
+  - [ ] Reasonable values (positive amounts, valid dates)
+- [ ] Implement data saving (AC: 4)
+  - [ ] Secure storage in PostgreSQL
+  - [ ] Encryption as per architecture
+- [ ] Add transaction retrieval (AC: 4)
+  - [ ] API endpoint to get transactions
+- [ ] Add testing subtasks
+  - [ ] Unit tests for form component
+  - [ ] Integration tests for API
+  - [ ] E2E tests for transaction entry flow</tasks>
+  </story>
+
+  <acceptanceCriteria>1. Form to enter transaction details (amount, date, description, type)
+2. Support for both income and expense transactions
+3. Basic validation for required fields and reasonable values
+4. Transactions saved securely and retrievable</acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/epics.md</path>
+        <title>AETHA Fin - Epic Breakdown</title>
+        <section>Story 1.3: Manual Transaction Entry</section>
+        <snippet>As a user, I want to manually enter my financial transactions, so that I can start building my financial database and get organized.
+
+Acceptance Criteria:
+1. Form to enter transaction details (amount, date, description, type)
+2. Support for both income and expense transactions
+3. Basic validation for required fields and reasonable values
+4. Transactions saved securely and retrievable</snippet>
+      </doc>
+      <doc>
+        <path>docs/PRD.md</path>
+        <title>AETHA Fin Product Requirements Document</title>
+        <section>Functional Requirements</section>
+        <snippet>FR019: [Основа] Данные пользователя защищены и конфиденциальны (доверие как фундамент)
+FR001: [Основа] Пользователь может безопасно получить доступ к своим финансовым данным (доступ к данным)
+FR002: [Видимость] Пользователь может видеть все свои доходы и расходы в одном месте (ясность данных)</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Архитектура решений AETHA Fin</title>
+        <section>Data Architecture</section>
+        <snippet>Финансовые данные в PostgreSQL с шифрованием. Связи между пользователями, транзакциями, категориями.</snippet>
+      </doc>
+    </docs>
+    <code></code>
+    <dependencies>
+      <go>
+        <!-- From go.mod -->
+        <module>github.com/gorilla/mux v1.8.0</module>
+      </go>
+      <prisma>
+        <!-- Assumed -->
+        <package>@prisma/client</package>
+      </prisma>
+    </dependencies>
+  </artifacts>
+
+  <constraints>REST API for data transmission, PostgreSQL with encryption, Next.js forms</constraints>
+  <interfaces></interfaces>
+  <tests>
+    <standards>Unit tests for components, integration tests for API endpoints, E2E tests for user flows</standards>
+    <locations>__tests__/</locations>
+    <ideas>Unit tests for form validation (AC: 3), Integration tests for data saving (AC: 4), E2E tests for full transaction entry flow</ideas>
+  </tests>
+</story-context>
