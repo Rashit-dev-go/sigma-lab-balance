@@ -1,6 +1,6 @@
 # Story 1.5: Basic Financial Dashboard
 
-Status: Review Passed
+Status: Done
 
 ## Story
 

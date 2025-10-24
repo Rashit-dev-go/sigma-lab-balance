@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { z } from 'zod';
 import { checkRateLimit, getRemainingRequests, getResetTime } from '@/lib/rate-limit';
 import logger from '@/lib/logger';
+import { logTransactionAudit } from '@/lib/audit';
 
 // Validation schema for transaction
 const transactionSchema = z.object({
@@ -59,14 +60,14 @@ export async function GET(request: NextRequest) {
       orderBy: { date: 'desc' },
     });
 
-    // Log audit event
-    logger.info('Financial data read operation', {
+    // Log audit event for reading transactions
+    await logTransactionAudit(
       userId,
-      operation: 'read',
-      resource: 'transactions',
-      count: transactions.length,
-      ip: request.ip || request.headers.get('x-forwarded-for') || 'unknown',
-    });
+      'read',
+      'bulk', // Special resourceId for bulk reads
+      { count: transactions.length },
+      request
+    );
 
     const remaining = getRemainingRequests(userId);
     const resetTime = getResetTime(userId);
@@ -132,15 +133,18 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    // Log audit event
-    logger.info('Financial data write operation', {
+    // Log audit event for creating transaction
+    await logTransactionAudit(
       userId,
-      operation: 'create',
-      resource: 'transaction',
-      transactionId: transaction.id,
-      category: validatedData.category,
-      ip: request.ip || request.headers.get('x-forwarded-for') || 'unknown',
-    });
+      'create',
+      transaction.id,
+      {
+        category: validatedData.category,
+        type: validatedData.type,
+        amount: validatedData.amount, // Note: this is the plain amount before encryption
+      },
+      request
+    );
 
     const remaining = getRemainingRequests(userId);
     const resetTime = getResetTime(userId);

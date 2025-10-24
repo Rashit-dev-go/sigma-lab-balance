@@ -1,0 +1,144 @@
+<story-context id="bmad/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>7</storyId>
+    <title>basic-compliance-framework</title>
+    <status>Ready</status>
+    <generatedAt>2025-10-24</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/stories/story-1.7.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>financial platform</asA>
+    <iWant>maintain basic compliance logging</iWant>
+    <soThat>regulatory requirements are met and user trust is maintained</soThat>
+    <tasks>- [ ] Implement transaction audit logging
+  - [ ] Add transaction logging to database operations
+  - [ ] Create audit log table with required fields (timestamp, user_id, action, details)
+  - [ ] Implement structured logging with Winston per architecture guidelines
+- [ ] User consent tracking system
+  - [ ] Create consent tracking database table
+  - [ ] Implement consent recording for data usage agreements
+  - [ ] Add consent status checking to user operations
+- [ ] Privacy policy and terms acceptance
+  - [ ] Create privacy policy page component
+  - [ ] Create terms of service page component
+  - [ ] Implement acceptance tracking during registration/onboarding
+  - [ ] Add policy update notification system
+- [ ] Data retention policy implementation
+  - [ ] Define data retention periods per regulatory requirements
+  - [ ] Implement automated data cleanup procedures
+  - [ ] Add retention policy documentation
+- [ ] Testing tasks
+  - [ ] Unit tests for audit logging functionality
+  - [ ] Unit tests for consent tracking operations
+  - [ ] Integration tests for privacy policy acceptance flow
+  - [ ] Unit tests for data retention cleanup procedures</tasks>
+  </story>
+
+  <acceptanceCriteria>1. Transaction logging for audit purposes
+2. User consent tracking for data usage
+3. Basic privacy policy and terms acceptance
+4. Data retention policies implemented</acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Architecture Document</title>
+        <section>Security Architecture</section>
+        <snippet>TLS 1.3 for all connections, AES-256 for data at rest, MFA for users, Rate limiting</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Architecture Document</title>
+        <section>Data Architecture</section>
+        <snippet>Financial data in PostgreSQL with encryption. Relations between users, transactions, categories.</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Architecture Document</title>
+        <section>API Contracts</section>
+        <snippet>REST endpoints for CRUD transactions, AI analysis, simulations, reports</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Architecture Document</title>
+        <section>Logging Strategy</section>
+        <snippet>Structured logs with INFO/WARN/ERROR levels, no sensitive data</snippet>
+      </doc>
+    </docs>
+    <code>
+      <artifact>
+        <path>lib/logger.ts</path>
+        <kind>utility</kind>
+        <symbol>logger</symbol>
+        <lines>1-36</lines>
+        <reason>Existing Winston logger implementation with structured logging</reason>
+      </artifact>
+      <artifact>
+        <path>prisma/schema.prisma</path>
+        <kind>database schema</kind>
+        <symbol>User, Transaction</symbol>
+        <lines>10-50</lines>
+        <reason>Existing database models for users and transactions requiring audit logging</reason>
+      </artifact>
+      <artifact>
+        <path>app/api/</path>
+        <kind>api structure</kind>
+        <symbol>REST endpoints</symbol>
+        <reason>Existing API directory structure for adding consent and compliance endpoints</reason>
+      </artifact>
+    </code>
+    <dependencies>
+      <dependency ecosystem="node">
+        <name>winston</name>
+        <version>latest</version>
+        <purpose>Structured logging implementation</purpose>
+      </dependency>
+      <dependency ecosystem="node">
+        <name>prisma</name>
+        <version>latest</version>
+        <purpose>Database ORM for PostgreSQL</purpose>
+      </dependency>
+      <dependency ecosystem="node">
+        <name>next</name>
+        <version>14.x</version>
+        <purpose>React framework for web application</purpose>
+      </dependency>
+      <dependency ecosystem="database">
+        <name>postgresql</name>
+        <version>latest</version>
+        <purpose>Primary database for financial data storage</purpose>
+      </dependency>
+    </dependencies>
+  </artifacts>
+
+  <constraints>PostgreSQL with encryption for data storage, Winston structured logging without sensitive data, REST API patterns for endpoints, TLS 1.3 and AES-256 encryption requirements, feature-based code organization, PascalCase for components and camelCase for variables</constraints>
+  <interfaces>
+    <interface>
+      <name>Audit Log API</name>
+      <kind>REST endpoint</kind>
+      <signature>POST /api/audit-log</signature>
+      <path>app/api/audit-log/route.ts</path>
+    </interface>
+    <interface>
+      <name>Consent Tracking API</name>
+      <kind>REST endpoint</kind>
+      <signature>POST /api/consent</signature>
+      <path>app/api/consent/route.ts</path>
+    </interface>
+    <interface>
+      <name>Privacy Policy Page</name>
+      <kind>React component</kind>
+      <signature>PrivacyPolicy component</signature>
+      <path>app/privacy-policy/page.tsx</path>
+    </interface>
+  </interfaces>
+  <tests>
+    <standards>Unit tests with Jest, integration tests for API endpoints, E2E tests with Playwright, follow existing testing framework in __tests__ directory</standards>
+    <locations>__tests__/unit/ for unit tests, __tests__/integration/ for integration tests, __tests__/e2e/ for end-to-end tests</locations>
+    <ideas>Test audit logging captures all transaction operations, test consent tracking prevents unauthorized data access, test privacy policy acceptance during onboarding, test automated data cleanup respects retention policies</ideas>
+  </tests>
+</story-context>

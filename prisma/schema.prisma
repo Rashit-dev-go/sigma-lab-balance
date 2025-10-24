@@ -18,6 +18,8 @@ model User {
 
   // Add user relationship to transactions
   transactions      Transaction[]
+  auditLogs         AuditLog[]
+  consents          Consent[]
 }
 
 model Transaction {
@@ -46,4 +48,38 @@ model CategorizationAttempt {
   userCategory  String?
   isCorrect     Boolean?
   createdAt     DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  action    String   // 'create', 'read', 'update', 'delete'
+  resource  String   // 'transaction', 'user', 'consent', etc.
+  resourceId String? // ID of the resource being acted upon
+  details   String?  // Additional details in JSON format
+  ipAddress String?
+  userAgent String?
+  timestamp DateTime @default(now())
+
+  @@index([userId, timestamp])
+  @@index([resource, resourceId])
+}
+
+model Consent {
+  id          String   @id @default(cuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type        String   // 'privacy_policy', 'terms_of_service', 'data_usage', 'marketing'
+  version     String   // Version of the policy/terms
+  consented   Boolean  @default(true) // true for consent given, false for withdrawal
+  consentDate DateTime @default(now())
+  withdrawalDate DateTime?
+  ipAddress   String?
+  userAgent   String?
+
+  @@unique([userId, type, version])
+  @@index([userId, type])
 }

@@ -1,44 +1,8 @@
-# Sprint Status Template
-# This is an EXAMPLE showing the expected format
-# The actual file will be generated with all epics/stories from your epic files
-
-# generated: 2025-10-23
-# project: Balance
-# project_key: Balance
-# tracking_system: file-system
-# story_location: {project-root}/docs/stories
-
-# STATUS DEFINITIONS:
-# ==================
-# Epic Status:
-#   - backlog: Epic exists in epic file but not contexted
-#   - contexted: Epic tech context created (required before drafting stories)
-#
-# Story Status:
-#   - backlog: Story only exists in epic file
-#   - drafted: Story file created in stories folder
-#   - ready-for-dev: Draft approved and story context created
-#   - in-progress: Developer actively working on implementation
-#   - review: Under SM review (via review-story workflow)
-#   - done: Story completed
-#
-# Retrospective Status:
-#   - optional: Can be completed but not required
-#   - completed: Retrospective has been done
-#
-# WORKFLOW NOTES:
-# ===============
-# - Epics should be 'contexted' before stories can be 'drafted'
-# - Stories can be worked in parallel if team capacity allows
-# - SM typically drafts next story after previous one is 'done' to incorporate learnings
-# - Dev moves story to 'review', SM reviews, then Dev moves to 'done'
-
 generated: 2025-10-23
 project: Balance
 project_key: Balance
 tracking_system: file-system
-story_location: "{project-root}/docs/stories"
-
+story_location: '{project-root}/docs/stories'
 development_status:
   epic-1: backlog
   1-1-secure-user-account-creation: done
@@ -46,8 +10,8 @@ development_status:
   1-3-manual-transaction-entry: done
   1-4-ai-powered-transaction-categorization: done
   1-5-basic-financial-dashboard: done
-  1-6-user-onboarding-flow: backlog
-  1-7-basic-compliance-framework: backlog
+  1-6-user-onboarding-flow: done
+  1-7-basic-compliance-framework: done
   epic-1-retrospective: optional
   epic-2: backlog
   2-1-basic-ai-financial-insights-free-tier: backlog

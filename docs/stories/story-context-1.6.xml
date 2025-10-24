@@ -1,0 +1,94 @@
+<story-context id="bmad/bmm/workflows/4-implementation/story-context/template" v="1.0">
+  <metadata>
+    <epicId>1</epicId>
+    <storyId>6</storyId>
+    <title>user-onboarding-flow</title>
+    <status>Draft</status>
+    <generatedAt>2025-10-24</generatedAt>
+    <generator>BMAD Story Context Workflow</generator>
+    <sourceStoryPath>docs/stories/story-1.6.md</sourceStoryPath>
+  </metadata>
+
+  <story>
+    <asA>new user</asA>
+    <iWant>guided onboarding experience</iWant>
+    <soThat>quickly understand how to use the platform and start managing my finances effectively</soThat>
+    <tasks>- Create onboarding flow component
+  - Account setup tutorial
+  - Transaction entry guidance
+  - AI categorization explanation
+  - Testing tasks</tasks>
+  </story>
+
+  <acceptanceCriteria>1. Step-by-step tutorial for account setup
+2. Guidance for entering first transactions
+3. Explanation of AI categorization
+4. Progress tracking through onboarding steps</acceptanceCriteria>
+
+  <artifacts>
+    <docs>
+      <doc>
+        <path>docs/epics.md</path>
+        <title>AETHA Fin - Epic Breakdown</title>
+        <section>Story 1.6: User Onboarding Flow</section>
+        <snippet>As a new user, I want a guided onboarding experience, so that I can quickly understand how to use the platform and start managing my finances effectively.</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Архитектура решений AETHA Fin</title>
+        <section>Authentication</section>
+        <snippet>Authentication: NextAuth.js + Yandex ID</snippet>
+      </doc>
+      <doc>
+        <path>docs/architecture.md</path>
+        <title>Архитектура решений AETHA Fin</title>
+        <section>UI Framework</section>
+        <snippet>Next.js 14, TypeScript, Tailwind CSS</snippet>
+      </doc>
+    </docs>
+    <code>
+      <artifact>
+        <path>app/</path>
+        <kind>directory</kind>
+        <symbol>Next.js App Router</symbol>
+        <reason>Existing app structure for adding onboarding route</reason>
+      </artifact>
+      <artifact>
+        <path>components/</path>
+        <kind>directory</kind>
+        <symbol>React components</symbol>
+        <reason>Component library for onboarding UI</reason>
+      </artifact>
+    </code>
+    <dependencies>
+      <dependency>
+        <ecosystem>node</ecosystem>
+        <packages>Next.js 14, Tailwind CSS, NextAuth.js</packages>
+      </dependency>
+      <dependency>
+        <ecosystem>go</ecosystem>
+        <packages>From go.mod</packages>
+      </dependency>
+    </dependencies>
+  </artifacts>
+
+  <constraints>Next.js App Router, NextAuth.js + Yandex ID integration, user-friendly error messages, TypeScript, feature-based structure</constraints>
+  <interfaces>
+    <interface>
+      <name>Authentication API</name>
+      <kind>REST</kind>
+      <signature>NextAuth.js endpoints</signature>
+      <path>pages/api/auth/</path>
+    </interface>
+  </interfaces>
+  <tests>
+    <standards>Jest for unit tests, Playwright for E2E, follow existing testing framework</standards>
+    <locations>__tests__/</locations>
+    <ideas>
+      <idea>AC1: Test onboarding component renders step-by-step</idea>
+      <idea>AC2: Test transaction entry guidance</idea>
+      <idea>AC3: Test AI categorization explanation</idea>
+      <idea>AC4: Test progress tracking</idea>
+    </ideas>
+  </tests>
+</story-context>
