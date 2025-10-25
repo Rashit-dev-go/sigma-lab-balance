@@ -44,10 +44,14 @@ phases:
         agent: "pm"
         command: "prd"
         output: "Requirements with integration points"
-      - id: "ux-spec"
-        conditional: "if_has_ui"
+      - id: "validate-prd"
+        optional: true
         agent: "pm"
-        command: "ux-spec"
+        command: "validate-prd"
+      - id: "create-design"
+        conditional: "if_has_ui"
+        agent: "ux-designer"
+        command: "create-design"
         note: "Must align with existing UI patterns"
 
   - phase: 3
@@ -69,6 +73,10 @@ phases:
         agent: "architect"
         command: "create-architecture"
         note: "Extension of existing architecture"
+      - id: "validate-architecture"
+        optional: true
+        agent: "architect"
+        command: "validate-architecture"
       - id: "solutioning-gate-check"
         required: true
         agent: "architect"

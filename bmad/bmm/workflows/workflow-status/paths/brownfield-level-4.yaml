@@ -46,10 +46,14 @@ phases:
         agent: "pm"
         command: "prd"
         output: "Comprehensive PRD considering existing system"
-      - id: "ux-spec"
-        required: true
+      - id: "validate-prd"
+        optional: true
         agent: "pm"
-        command: "ux-spec"
+        command: "validate-prd"
+      - id: "create-design"
+        required: true
+        agent: "ux-designer"
+        command: "create-design"
         note: "Multiple UI/UX specifications"
 
   - phase: 3
@@ -62,6 +66,10 @@ phases:
         command: "create-architecture"
         output: "Architecture for system expansion"
         note: "Must maintain backward compatibility"
+      - id: "validate-architecture"
+        optional: true
+        agent: "architect"
+        command: "validate-architecture"
       - id: "solutioning-gate-check"
         required: true
         agent: "architect"

@@ -44,16 +44,20 @@ phases:
         command: "prd"
         output: "Focused PRD for new features"
         note: "Must consider existing system constraints"
+      - id: "validate-prd"
+        optional: true
+        agent: "pm"
+        command: "validate-prd"
       - id: "tech-spec"
         required: true
         agent: "pm"
         command: "tech-spec"
         output: "Creates spec with multiple story files"
         note: "Integrate with existing patterns"
-      - id: "ux-spec"
+      - id: "create-design"
         conditional: "if_has_ui"
-        agent: "ux-expert"
-        command: "ux-spec"
+        agent: "ux-designer"
+        command: "create-design"
 
   - phase: 3
     name: "Solutioning"

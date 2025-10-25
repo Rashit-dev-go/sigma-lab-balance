@@ -1,4 +1,4 @@
-generated: 2025-10-23
+generated: 2025-10-25
 project: Balance
 project_key: Balance
 tracking_system: file-system
@@ -13,7 +13,7 @@ development_status:
   1-6-user-onboarding-flow: done
   1-7-basic-compliance-framework: done
   epic-1-retrospective: optional
-  epic-2: backlog
+  epic-2: contexted
   2-1-basic-ai-financial-insights-free-tier: backlog
   2-2-premium-ai-recommendations-engine: backlog
   2-3-subscription-management-system: backlog

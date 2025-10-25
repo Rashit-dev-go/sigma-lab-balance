@@ -68,11 +68,10 @@ export async function POST(request: NextRequest) {
     })
 
     // Send verification email
-    const transporter = nodemailer.createTransporter({
-      // Configure email service (placeholder)
-      host: 'smtp.example.com',
-      port: 587,
-      secure: false,
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.yandex.com',
+      port: 465,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
